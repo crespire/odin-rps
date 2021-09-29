@@ -71,7 +71,7 @@ function playRound(playerInput, computerInput) {
     } else if (winner === 'c') {
         roundResult = `You lose! ${playerSelection} beats ${computerInput}!`;
     } else {
-        roundResult = `It was a tie!`
+        roundResult = `It was a tie! You both played ${playerSelection}!`;
     }
 
     return roundResult;
@@ -85,19 +85,22 @@ function game(iteration) {
     let message = "";
 
     for (i=1;i<iteration+1;i++) {
-        message = playRound(computerPlay(), computerPlay());
+        input = window.prompt("What is your play?")
+        message = playRound(input, computerPlay());
         games += 1;
 
         if (message.includes("win")) {
             wins += 1;
         } else if (message.includes("lose")) {
             losses += 1;
-        } else {
+        } else if (message.includes("tie")) {
             ties += 1;
+        } else {
+            message += " Try again."
         }
 
-        console.log(message);
+        alert(message);
     }
 
-    console.log(`We just played ${games} games. You won ${wins} times, lost ${losses} times and tied ${ties} times for a win rate of ${Math.round(wins/games * 100)}%!`)
+    alert(`We played ${games} games. You won ${wins} times, lost ${losses} times and tied ${ties} times for a win rate of ${Math.round(wins/games * 100)}%!`)
 }
