@@ -22,26 +22,26 @@ function computerPlay() {
     return move;
 }
 
-function comparePlay(p, c) {
+function comparePlay(pChoice, cChoice) {
     let winner = undefined;
 
-    if (p === c) {
+    if (pChoice === cChoice) {
         winner = "t"
     } else {
-        if (p === "rock") {
-            if (c === "scissors") {
+        if (pChoice === "rock") {
+            if (cChoice === "scissors") {
                 winner = "p"
             } else {
                 winner = "c"
             }
-        } else if (p === "paper") {
-            if (c === "rock") {
+        } else if (pChoice === "paper") {
+            if (cChoice === "rock") {
                 winner = "p";
             } else {
                 winner = "c";
             }
         } else {
-            if (c === "paper") {
+            if (cChoice === "paper") {
                 winner = "c";
             } else {
                 winner = "p";
