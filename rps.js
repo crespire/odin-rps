@@ -62,9 +62,9 @@ function playRound(playerInput, computerInput) {
         return "Invalid move.";
     }
 
-    console.log(`The inputs for playRound are: \n Player: ${playerSelection} \n Computer: ${computerInput}`);
+    // console.log(`The inputs for playRound are: \n Player: ${playerSelection} \n Computer: ${computerInput}`);
     winner = comparePlay(playerSelection, computerInput);
-    console.log(`The winner returned was ${winner}.`);
+    // console.log(`The winner returned was ${winner}.`);
 
     if (winner === 'p') {
         roundResult = `You win! ${playerSelection} beats ${computerInput}!`;
