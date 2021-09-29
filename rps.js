@@ -58,14 +58,17 @@ function playRound(playerInput, computerInput) {
     let winner = undefined;
     let roundResult = undefined;
 
+    // Check if input is allowed.
     if (!ALLOWED.includes(playerSelection)) {
         return "Invalid move.";
     }
 
+    // Get the winner
     // console.log(`The inputs for playRound are: \n Player: ${playerSelection} \n Computer: ${computerInput}`);
     winner = comparePlay(playerSelection, computerInput);
     // console.log(`The winner returned was ${winner}.`);
 
+    // Set the round result message
     if (winner === 'p') {
         roundResult = `You win! ${playerSelection} beats ${computerInput}!`;
     } else if (winner === 'c') {
