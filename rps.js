@@ -78,23 +78,23 @@ function playRound(playerInput, computerInput) {
 }
 
 function game(iteration) {
-    let games = 0;
-    let wins = 0;
-    let losses = 0;
-    let ties = 0;
+    let gamesPlayed = 0;
+    let gamesWon = 0;
+    let gamesLost = 0;
+    let gamesTied = 0;
     let message = "";
 
     for (i=1;i<iteration+1;i++) {
         input = window.prompt("What is your play?")
         message = playRound(input, computerPlay());
-        games += 1;
+        gamesPlayed += 1;
 
         if (message.includes("win")) {
-            wins += 1;
+            gamesWon += 1;
         } else if (message.includes("lose")) {
-            losses += 1;
+            gamesLost += 1;
         } else if (message.includes("tie")) {
-            ties += 1;
+            gamesTied += 1;
         } else {
             message += " Try again."
         }
@@ -102,5 +102,5 @@ function game(iteration) {
         alert(message);
     }
 
-    alert(`We played ${games} games. You won ${wins} times, lost ${losses} times and tied ${ties} times for a win rate of ${Math.round(wins/games * 100)}%!`)
+    alert(`We played ${gamesPlayed} games. You won ${gamesWon} times, lost ${gamesLost} times and tied ${gamesTied} times for a win rate of ${Math.round(gamesWon/gamesPlayed * 100)}%!`)
 }
