@@ -119,36 +119,55 @@ function playGame(event) {
     // Event handling variables
     let clickedTag = event.target.tagName;
     let moveSelected = event.target.id;
+    let message = "";
+    let outputDiv = document.querySelector('.output');
+    let outputP = document.createElement('p');
 
     // console.log(`Got a click, here's info: \n${event}`);
     // console.log(`You clicked on a ${clickedTag}`);
-    
-    if (!moveSelected) return; // Exit this round if we don't detect a valid click
-    if (gamesWon >= 5) { // Stop after 5 wins
-        alert('You won!');
-    }; 
 
-    // We have a valid move, so play the round.
-    // console.log(`You played ${moveSelected}`);
-    let message = playRound(moveSelected, computerPlay());
 
-    gamesPlayed += 1;
+    switch(moveSelected) {
+        case 'clear': // Clear the text area            
+            outputDiv.textContent = "";
+            break;
 
-    if (message.includes("win")) {
-        gamesWon += 1;
-    } else if (message.includes("lose")) {
-        gamesLost += 1;
-    } else if (message.includes("tie")) {
-        gamesTied += 1;
-    } else {
-        message += " Try again."
+        case 'reset':
+            outputDiv.textContent = "Stats reset!";
+            gamesPlayed = 0;
+            gamesWon = 0;
+            gamesLost = 0;
+            gamesTied = 0;
+            break;
+        
+        case "rock":
+        case "paper":
+        case "scissors": // Valid move, so play the round.
+            // console.log(`You played ${moveSelected}`);
+            message = playRound(moveSelected, computerPlay());
+
+            gamesPlayed += 1;
+
+            if (message.includes("win")) {
+                gamesWon += 1;
+            } else if (message.includes("lose")) {
+                gamesLost += 1;
+            } else if (message.includes("tie")) {
+                gamesTied += 1;
+            } else {
+                message += " Try again."
+            }
+
+            message += ` You've played ${gamesPlayed} games, and won ${gamesWon} of them!`;
+
+            outputP.textContent = message;
+            outputDiv.appendChild(outputP);
+            break;
+        
+        default: // We covered valid cases, so whatever was passed in must not be valid, exit.
+            break;    
+
     }
-
-    let outputDiv = document.querySelector('.output');
-    let outputP = document.createElement('p');
-    outputP.textContent = message;
-    outputDiv.appendChild(outputP);
-    
 }
 
 // Set up event listener for a button click.
